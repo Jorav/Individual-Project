@@ -1,21 +1,25 @@
 package model;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Task {
-    private int taskId;
+    private int taskId = 0;
+    private static int counter = 1;
     private String title;
-    private Date dueDate;
+    private LocalDate dueDate;
     private boolean taskComplete;
-    Project project;
+    private String projectTitle;
+    private Scanner scan = new Scanner(System.in);
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
 
-    public Task() {
-    }
+    public Task(String title, LocalDate dueDate, String projectTitle) {
 
-    public Task(int taskId, String title, Date dueDate) {
-        this.taskId = taskId;
+        this.taskId = counter++;
         this.title = title;
         this.dueDate = dueDate;
+        this.projectTitle = projectTitle;
         this.taskComplete = false;
     }
 
@@ -23,9 +27,13 @@ public class Task {
         this.title = title;
     }
 
-    public void setDate(Date date) {
-        this.dueDate = date;
+    public void setDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
     }
+
+/*    public void setTaskId(){
+        this.taskId;
+    }*/
 
     public int getTaskId() {
         return taskId;
@@ -35,28 +43,27 @@ public class Task {
         return title;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return dueDate;
     }
 
-    public void setTaskId(int taskId) {
+   /* public void setTaskId(int taskId) {
         this.taskId = taskId;
     }
-
-    public Project getProject() {
-        return project;
+*/
+    public String getProjectTitle() {
+        return projectTitle;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public void setProjectTitle(String projectTitle) {
+        this.projectTitle = projectTitle;
     }
 
     public String isTaskComplete() {
         String status;
-        if(taskComplete == true){
+        if (taskComplete == true) {
             status = "COMPLETED";
-        }
-        else{
+        } else {
             status = "NOT DONE";
         }
         return status;
@@ -64,6 +71,12 @@ public class Task {
 
     public void setTaskComplete(boolean taskComplete) {
         this.taskComplete = taskComplete;
+    }
+
+    @Override
+    public String toString(){
+        return this.getTaskId() + "  " + this.getTitle() + "  " + this.getDate() + "   " + this.getProjectTitle() + "   "
+                       + this.isTaskComplete() + "\n";
     }
 
 }

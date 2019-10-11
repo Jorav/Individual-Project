@@ -1,9 +1,7 @@
 package ui;
 
-import implementation.TaskList;
 import model.Task;
-
-import java.util.ArrayList;
+import java.util.*;
 
 public class UI {
 
@@ -27,11 +25,11 @@ public class UI {
         String taskDateString = String.valueOf(task.getDate());
         String taskStatusString = String.valueOf(task.isTaskComplete());
         System.out.println(fixLengthString(taskIdString, 7) + "  " + fixLengthString(task.getTitle(), 20) + "  "
-                                   + fixLengthString(taskDateString, 11) + "  " + fixLengthString(task.getProject().getProjectTitle(), 12)
+                                   + fixLengthString(taskDateString, 11) + "  " + fixLengthString(task.getProjectTitle(), 12)
                                    + fixLengthString(taskStatusString, 10));
     }
 
-    public void printTaskList(ArrayList<Task> allTaskList) {
+    public void printTaskList(List<Task> allTaskList) {
         for (Task task : allTaskList) {
             if (task != null) {
                 printTask(task);
